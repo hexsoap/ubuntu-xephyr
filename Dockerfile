@@ -1,5 +1,5 @@
 FROM hexsoap/ubuntu-base:v1.0
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y -q -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"\
 	zsh \
 	fontconfig \
 	python-pip \
