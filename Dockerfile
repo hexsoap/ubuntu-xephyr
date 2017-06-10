@@ -1,4 +1,5 @@
 FROM hexsoap/ubuntu-base:v1.0
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y -q -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"\
 	zsh \
 	fontconfig \
@@ -8,6 +9,7 @@ RUN apt-get update && apt-get install -y -q -o Dpkg::Options::="--force-confdef"
   i3blocks \
   locales \
   xserver-xephyr \
+  xpra \
 	&& rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/archives && locale-gen en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
@@ -21,3 +23,4 @@ COPY PowerlineSymbols.otf /root/.fonts
 COPY 10-powerline-symbols.conf /etc/fonts/conf.d/
 RUN fc-cache -vf /etc/fonts/conf.d/
 RUN chsh -s /bin/zsh 
+ENV DEBIAN_FRONTEND teletype
